@@ -1,0 +1,33 @@
+.botoncerrarsesion{
+  height: auto;
+  width: auto;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #6a5ad4; 
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin-top: 5px;
+}
+.botoncerrarsesion a{
+  text-decoration: none;
+  color: #6a5ad4;
+}
+
+.backgroundnavbar{
+  background-color: #3d3d3d;
+}
+
+.botoncerrarsesion a{
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+.botoncerrarsesion:hover{
+  cursor: pointer;
+  background-color: #6a5ad4; 
+  color: #212529;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.botoncerrarsesion:hover a{
+ color: white;
+}
