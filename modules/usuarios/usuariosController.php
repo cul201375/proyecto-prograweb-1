@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-if (!$_SESSION['user_id']){
+if (!$_SESSION['idusuario']){
     header("location: ../../index.php");
 }
 
@@ -14,59 +14,68 @@ include_once('../../include/functions.php');
     $crearUsuario = (isset($_POST['crear_usuario'])) ? $_POST['crear_usuario'] : "0";
     $eliminarUsuario = (isset($_POST['eliminar_usuario'])) ? $_POST['eliminar_usuario'] : "0";
     $editar_usuario = (isset($_POST['editar_usuario'])) ? $_POST['editar_usuario'] : "0";
-    $confirmar_edit_usuario = (isset($_POST['confirmar_modificacion'])) ? $_POST['confirmar_modificacion'] : "0";
+    $confirmar_edit_usuario = (isset($_POST['confirmar_edit_usuario'])) ? $_POST['confirmar_edit_usuario'] : "0";
+    $uploadfile = (isset($_POST['upload_file'])) ? $_POST['upload_file'] : "0";
     
     if($crearUsuario == 1){
         $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : "0";
-        $apellido = (isset($_POST['apellido'])) ? $_POST['apellido'] : "0";
         $edad = (isset($_POST['edad'])) ? $_POST['edad'] : "0";
+        $direccion = (isset($_POST['direccion'])) ? $_POST['direccion'] : "0";
         $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : "0";
         $clave = (isset($_POST['clave'])) ? $_POST['clave'] : "0";
         $dpi = (isset($_POST['dpi'])) ? $_POST['dpi'] : "0";
         $correo = (isset($_POST['correo'])) ? $_POST['correo'] : "0";
         $telefono = (isset($_POST['telefono'])) ? $_POST['telefono'] : "0";
         $role_id = (isset($_POST['role_id'])) ? $_POST['role_id'] : "0";
+        $form_data = (isset($_FILES['form_data'])) ? $_FILES['form_data'] : "0";
     
     
-        $resultado = $usuariosClass -> createUser($nombre, $apellido, $edad, $usuario, $clave, $dpi, $correo, $telefono, $role_id);
+        $resultado = $usuariosClass -> createUser($nombre, $edad, $direccion, $usuario, $clave, $dpi, $correo, $telefono, $role_id, $form_data);
         $respuesta['resultado'] = $resultado;
         echo json_encode($respuesta);
     }
 
     if ($eliminarUsuario == 1){
-        $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : "0";
+        $user_id = (isset($_POST['idusuario'])) ? $_POST['idusuario'] : "0";
         $resultado = $usuariosClass -> deleteUser($user_id);
         $respuesta['resultado'] = $resultado;
         echo json_encode($respuesta);
     }
     
     if($editar_usuario == 1){
-        $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : "0";
+
+        $user_id = (isset($_POST['idusuario'])) ? $_POST['idusuario'] : "0";
+
         $result = $usuariosClass -> cargarUsuario($user_id);
 
-        $data[] = array(
+        $data = array();
 
-            "id" =>$result[0]['id'],
-            "nombre" =>$result[0]['nombre'],
-            "apellido" =>$result[0]['apellido'],
-            "edad" =>$result[0]['edad'],
-            "usuario" =>$result[0]['usuario'],
-            "clave" =>$result[0]['clave'],
-            "dpi" =>$result[0]['dpi'],
-            "correo" =>$result[0]['correo'],
-            "telefono" =>$result[0]['telefono'],
-            "id_rol" =>$result[0]['id_rol'],
-            "nombre_rol" =>$result[0]['nombre_rol'],
-            "estado"=>$result[0]['estado']
-        );
-        echo json_encode($data);
+        if($fila = mysqli_fetch_array($result)){
+            $data['idusuario'] = $fila['idusuario'];
+            $data['nombre'] = $fila['nombre'];
+            $data['edad'] = $fila['edad'];
+            $data['direccion'] = $fila['direccion'];
+            $data['usuario'] = $fila['usuario'];
+            $data['clave'] = $fila['clave'];
+            $data['dpi'] = $fila['dpi'];
+            $data['correo'] = $fila['correo'];
+            $data['telefono'] = $fila['telefono'];
+            $data['id_rol'] = $fila['id_rol'];
+            $data['nombre_rol'] = $fila['nombre_rol'];
+            $data['estado']= $fila['estado'];
+            $data['imgprofile']= $fila['imgprofile'];
+            echo json_encode($data);
+        }
+        else{
+            $data['result'] = 'error';
+        }
     }
 
     if($confirmar_edit_usuario == 1){
-        $id = (isset($_POST['id'])) ? $_POST['id'] : "0";
+        $user_id = (isset($_POST['idusuario'])) ? $_POST['idusuario'] : "0";
         $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : "0";
-        $apellido = (isset($_POST['apellido'])) ? $_POST['apellido'] : "0";
         $edad = (isset($_POST['edad'])) ? $_POST['edad'] : "0";
+        $direccion = (isset($_POST['direccion'])) ? $_POST['direccion'] : "0";
         $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : "0";
         $clave = (isset($_POST['clave'])) ? $_POST['clave'] : "0";
         $dpi = (isset($_POST['dpi'])) ? $_POST['dpi'] : "0";
@@ -77,11 +86,18 @@ include_once('../../include/functions.php');
     
     
     
-        $resultado = $usuariosClass -> modificarUsuario($id, $nombre, $apellido, $edad, $usuario, $clave, $dpi, $correo, $telefono, $estado , $role_id);
-        $respuestaconfirmarcambios['resultado'] = $resultado;
-        echo json_encode($respuestaconfirmarcambios);
+        $result = $usuariosClass -> modificarUsuario($user_id, $nombre, $edad, $direccion, $correo, $telefono, $role_id, $estado);
+        
+        $newdata['resultado'] = $result;
+
+        echo json_encode($newdata);
     }
 
+    if ($uploadfile == 1) {
+        $result = $usuariosClass -> upimgprofile();
+     } else {
+
+    }
 
 ob_end_flush();
 ?>

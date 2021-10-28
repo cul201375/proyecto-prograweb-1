@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-if (!$_SESSION['user_id']){
+if (!$_SESSION['idusuario']){
     header("location: index.php");
 }
 include_once("../../include/functions.php");

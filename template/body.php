@@ -4,16 +4,15 @@
         <div>
             <nav class = "navbar navbar-expand-md navbar-dark backgroundnavbar flex-md-nowrap " >
                 <div class = "container-fluid">
-                    <button type="button" class="navbar-toggler" data-bs-toggle = "collapse" data-bs-target = "#sidebarMenu">
+                    <button type="button" class="navbar-toggler" data-bs-toggle = "collapse" data-bs-target = "#sidebar">
                         <span class = "navbar-toggler-icon"></span>
                     </button>
-                    <a href = "#" class="navbar-brand">SISETEMA VENTAS</a>
+                    <a href = "#" class="navbar-brand"><img src="img/brand/sv.png" heigth = "100" width = "120"></a>
                     <button type="button" class="navbar-toggler" data-bs-toggle = "collapse" data-bs-target = "#MenuNav">
                         <span class = "navbar-toggler-icon"></span>
                     </button>
                     <div id = "MenuNav" class="collapse navbar-collapse" >
                         <ul class="navbar-nav ms-3">
-                            <li class="nav-item"><a class="nav-link" href="#"> Catalogo </a></li>
                             <li class="nav-item"><a class="nav-link" href="#"> Informacion </a></li>
                             <li class="nav-item"><a class="nav-link" href="#"> Ayuda </a></li>
                             <li class="nav-item dropdown">

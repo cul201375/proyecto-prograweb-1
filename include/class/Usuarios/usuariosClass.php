@@ -5,7 +5,7 @@
         function listadoUsuarios(){
             $conexionClass = new Tool();
             $conexion = $conexionClass->conectar();
-
+            
             mysqli_query($conexion, "SET NAMES 'utf8'");
             mysqli_set_charset($conexion, "utf8");
 
@@ -16,7 +16,7 @@
                 
             }
         
-            $sql = "SELECT a.id, a.nombre, a.apellido, a.edad, a.usuario, a.clave, a.dpi, a.correo, a.telefono, b.nombre as nombre_rol, a.estado from usuarios a, role b WHERE a.role_id = b.id;";
+            $sql = "SELECT a.imgprofile, a.idusuario, a.nombre, a.edad, a.dpi, a.direccion, a.telefono, a.correo,  a.usuario, a.clave, a.estado, b.nombre as nombre_rol from usuarios a, rol b WHERE a.idrol = b.idrol;";
         
             return $resultado = mysqli_query($conexion, $sql);
         }
@@ -25,7 +25,7 @@
             $conexionClass = new Tool();
             $conexion = $conexionClass -> conectar();
 
-            $sql = "SELECT id, nombre, estado FROM role";
+            $sql = "SELECT idrol, nombre, estado FROM rol";
 
             $resultado = mysqli_query($conexion, $sql);
             $conexionClass -> desconectar($conexion);
@@ -33,12 +33,14 @@
 
         }
 
-        function createUser($nombre, $apellido, $edad, $usuario, $clave, $dpi, $correo, $telefono, $role_id){
+        function createUser($nombre, $edad, $direccion, $usuario, $clave, $dpi, $correo, $telefono, $role_id, $form_data){
             $conexionClass = new Tool();
             $conexion = $conexionClass -> conectar();
+            $conexionftp = $conexionClass ->conectarftp();
 
-            $sql = "INSERT into ventas.usuarios (nombre, apellido, edad, usuario, clave, dpi, correo, telefono, estado, role_id) 
-                    values ('$nombre', '$apellido', '$edad', '$usuario', '$clave', '$dpi', '$correo', '$telefono', 'A', '$role_id');";
+            $sql = "insert into usuarios (idrol, nombre, edad, direccion, usuario, clave, dpi, correo, telefono, estado) 
+            values ($role_id,'$nombre', $edad, '$direccion', '$usuario','$clave', '$dpi', 
+            '$correo', '$telefono', 1);";
 
             $resultado = mysqli_query($conexion, $sql);
             if($resultado){
@@ -49,7 +51,32 @@
                 $conexionClass -> desconectar($conexion);
                 return 0;
             }
-           
+
+            $local = $_FILES["file"]["name"];
+            $remoto = $_FILES["archivo"]["tmp_name"];
+            $tama = $_FILES["archivo"]["size"];
+            $ruta = "/img/usersprofiles/" . $local;
+            if($conexionftp!=0){
+                if (ftp_put($conexionftp, $local, $remoto)) {
+                    if (is_uploaded_file($remoto)){
+                        // copiamos el archivo temporal, del directorio de temporales de nuestro servidor a la ruta que creamos
+                        copy($remoto, $ruta);		
+                    }
+                    // Sino se pudo subir el temporal
+                    else {
+                        echo "no se pudo subir el archivo " . $local;
+                    }
+                    echo "successfully uploaded $local\n";
+                    exit;
+                } else {
+                    echo "There was a problem while uploading $local\n";
+                    exit;
+                    }
+                // close the connection
+                ftp_close($conexionftp);
+            }
+            else{
+            }
         }
 
         
@@ -57,7 +84,7 @@
             $conexionClass = new Tool();
             $conexion = $conexionClass -> conectar();
 
-            $sql = "DELETE FROM ventas.usuarios WHERE id = $user_id";
+            $sql = "DELETE FROM sistemaventas.usuarios WHERE idusuario = $user_id";
 
             $resultado = mysqli_query($conexion, $sql);
 
@@ -72,41 +99,32 @@
            
         }
 
-        function cargarUsuario($user_id_text){
-
-            $user_id = intval($user_id_text);
+        function cargarUsuario($user_id){
 
             $conexionClass = new Tool();
             $conexion = $conexionClass -> conectar();
 
-            $sql = "SELECT a.id, a.nombre, a.apellido, a.edad, a.usuario, a.clave, a.dpi, a.correo, a.telefono, b.id as id_rol, b.nombre as nombre_rol, a.estado from usuarios a, role b WHERE a.role_id = b.id AND a.id = $user_id ORDER BY CAST(b.id AS CHAR);";
+            $sql = "SELECT a.imgprofile, a.idusuario, a.nombre, a.edad, a.direccion, a.usuario, a.clave, a.dpi, a.correo, a.telefono, b.idrol as id_rol, b.nombre as nombre_rol, a.estado from usuarios a, rol b WHERE a.idrol = b.idrol AND a.idusuario = '$user_id';";
             
             $resultado = mysqli_query($conexion, $sql);
-
             $conexionClass -> desconectar($conexion);
-            while( $fila = mysqli_fetch_array( $resultado )){
-                $nuevo_array[] = $fila;
-            }
-           
-            return $nuevo_array;
+
+            return $resultado;
         }
 
-        function modificarUsuario($id, $nombre, $apellido, $edad, $usuario, $clave, $dpi, $correo, $telefono, $estado , $role_id){
+        function modificarUsuario($user_id, $nombre, $edad, $direccion, $correo, $telefono, $role_id, $estado){
             $conexionClass = new Tool();
             $conexion = $conexionClass -> conectar();
 
-            $sql = "UPDATE usuarios SET 
-            nombre = '$nombre', 
-            apellido = '$apellido', 
-            edad = $edad, 
-            usuario = '$usuario',
-            clave = '$clave', 
-            dpi = '$dpi', 
-            correo = '$correo', 
-            telefono = '$telefono', 
-            estado = '$estado', 
-            role_id = $role_id 
-            where id = $id;";
+            $sql = "UPDATE sistemaventas.usuarios SET 
+                nombre = '$nombre', 
+                edad = $edad, 
+                direccion = '$direccion',
+                correo = '$correo', 
+                telefono = '$telefono', 
+                estado = $estado, 
+                idrol = $role_id 
+                where idusuario = $user_id;";
 
             $resultado = mysqli_query($conexion, $sql);
 
@@ -119,6 +137,25 @@
                 return 0;
             }
            
+        }
+        function upimgprofile($file_temp, $file, $remote_file){
+            $conexion = new Tool();
+            $conexionftp = $conexion -> conectarftp();
+
+            if($conexionftp!=0){
+                if (ftp_put($conexionftp, $remote_file, $file, FTP_ASCII)) {
+                    echo "successfully uploaded $file\n";
+                    exit;
+                } else {
+                    echo "There was a problem while uploading $file\n";
+                    exit;
+                    }
+                // close the connection
+                ftp_close($conexionftp);
+            }
+            else{
+                return 0;
+            }
         }
     }
 ?>

@@ -23,6 +23,22 @@
             }
             return $close;
         }
+
+        function conectarftp(){
+            $conn_id = ftp_connect(SERVERFTP);
+
+            $login_result = ftp_login($conn_id, USERFTP, PASSFTP);
+
+            if((!$login_result) || (!$conn_id)){
+                return 0;
+                exit;
+            }
+            else{
+                ftp_pasv ($conn_id, true);
+                ftp_chdir($cid, "img/usersprofiles");
+                return $conn_id;
+            }
+        }
     }
 
 ?>

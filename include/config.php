@@ -3,7 +3,10 @@
     define("SERVER","127.0.0.1");
     define("USER", "curso");
     define("PASS", "emanuel@123");
-    define("DB","ventas");
+    define("DB","sistemaventas");
+    define("SERVERFTP","127.0.0.1");
+    define("USERFTP", "emanuel");
+    define("PASSFTP", "emanuel");
 
     #OTROS PARAMETROS
     define("RAIZ_APLICACION", dirname(__FILE__));   

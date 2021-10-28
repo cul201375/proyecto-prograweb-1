@@ -5,11 +5,10 @@ class loginClass{
         $conexionClass = new Tool();
         $conexion = $conexionClass->conectar();
 
-        $sql = "select * from usuarios where usuario = '$usuario' and clave = '$clave'";
+        $sql = "select * from usuarios where usuario = '$usuario' and clave = '$clave';";
         $resultado = mysqli_query($conexion, $sql);
         return $resultado;
     }
-
 
     function cerrar_sesion (){
         session_start();
