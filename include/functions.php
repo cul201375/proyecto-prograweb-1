@@ -10,6 +10,7 @@
     #clases de la capa de modelo de la db
     require_once("class/Conn/Tools.php");
     require_once("class/Login/loginClass.php");
-    require_once("class/usuarios/usuariosClass.php");
+    require_once("class/Usuarios/usuariosClass.php");
+    require_once("class/Productos/ProductosClass.php");
     
 ?>

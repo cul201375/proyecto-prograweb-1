@@ -92,6 +92,7 @@ function eliminarUsuario(id) {
 }
 
 function editarUsuarios(id) {
+  var foto =  new Image();  
   parametros = {
     editar_usuario: 1,
     idusuario: id,
@@ -114,7 +115,11 @@ function editarUsuarios(id) {
           $('#editrol_id').val(datos['role_id']);
           $('#editRole_id').val(datos['nombre_rol']);
           $('#editEstado').val(datos['estado']);
-          $('#editFoto').val(datos['imgprofile']);
+          if (datos['imgprofile'] == null){
+            $('#viewedituserprofile').attr('src', 'img/usersprofiles/nouser.png');
+          }else{
+            $('#viewedituserprofile').attr('src', datos['imgprofile']);
+          }          
     },
   });
 }
@@ -132,6 +137,7 @@ $("#btnConfirmEditarUsuario").on("click", function () {
   let telefono = $("#editTelefono").val();
   let estado = $("#editEstado").val();
   let idrol = $("#editrol_id").val();
+  let img = $("#editFoto").val();
 
   if (
     idusuario == "" ||
@@ -144,7 +150,8 @@ $("#btnConfirmEditarUsuario").on("click", function () {
     correo == "" ||
     telefono == "" ||
     estado == null ||
-    idrol == null
+    idrol == null ||
+    img == null
   ) 
   {
     alert("Todos los campos son obligatorios");
@@ -183,7 +190,7 @@ $("#btnConfirmEditarUsuario").on("click", function () {
         $("#fromEditarUsuario").modal("hide");
         $("body").removeClass("modal-open");
         $(".modal-backdrop").remove();
-        alert("Usuario creado exitosamente");
+        alert("Usuario editado exitosamente");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
         alert("No se pudo crear el usuario");

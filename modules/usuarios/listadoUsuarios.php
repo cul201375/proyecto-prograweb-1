@@ -63,8 +63,8 @@ include_once('../../include/functions.php');
                       <td><?php echo $fila['telefono']; ?></td>
                       <td><?php echo $fila['nombre_rol']; ?></td>
                       <td><?php echo $fila['estado']; ?></td>
-                      <td><button type="button" class="btn btn-warning " id = "btnEditarUsuario" name = "btnEditarUsuario" onclick = "editarUsuarios(<?php echo $fila['idusuario'];?>);" data-bs-toggle="modal" data-bs-target="#fromEditarUsuario">EDITAR</button></td>
-                      <td><button type="button" class="btn btn-danger " id = "btnEliminarUsuario" name = "btnEliminarUsuario" onclick = "eliminarUsuario(<?php echo $fila['idusuario'];?>);">ELIMINAR</button></td>
+                      <td><button type="button" class="btn btn-warning " id = "btnEditarUsuario" name = "btnEditarUsuario" onclick = "editarUsuarios(<?php echo $fila['idusuario'];?>);" data-bs-toggle="modal" data-bs-target="#fromEditarUsuario"><i class="fas fa-edit"></i></button></td>
+                      <td><button type="button" class="btn btn-danger " id = "btnEliminarUsuario" name = "btnEliminarUsuario" onclick = "eliminarUsuario(<?php echo $fila['idusuario'];?>);"><i class="fas fa-user-minus"></i></button></td>
                     </tr>
                     <?php
                    }
@@ -231,8 +231,9 @@ include_once('../../include/functions.php');
           </div>
 
           <div class="mb-3" style = "text-align:center;">
+          <img id = "viewedituserprofile" src="" alt="userprofile" width="80" height="80"><img/>
             <label for="formFileSm" class="form-label">Elige una foto</label>
-            <input class="form-control form-control-sm" id="editFoto" type="file">
+            <input class="selecctordefoto" style = "font-size: x-small" id="editFoto" type="file">
           </div>
         </div>
 

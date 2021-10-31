@@ -41,7 +41,7 @@
                             Ingreso</a>
                         </li>
                         <li class="nav-item-sidebar">
-                            <a class="nav-link-sidebar" href="#">
+                            <a class="nav-link-sidebar" onclick="CargarContenido('modules/productos/listadoProductos.php');" href="#">
                             <i class="fas fa-layer-group icon-sibar"></i>
                             Productos en tienda</a>
                         </li>
