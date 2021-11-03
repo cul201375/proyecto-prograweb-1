@@ -33,10 +33,9 @@
 
         }
 
-        function createUser($nombre, $edad, $direccion, $usuario, $clave, $dpi, $correo, $telefono, $role_id, $form_data){
+        function createUser($nombre, $edad, $direccion, $usuario, $clave, $dpi, $correo, $telefono, $role_id){
             $conexionClass = new Tool();
             $conexion = $conexionClass -> conectar();
-            $conexionftp = $conexionClass ->conectarftp();
 
             $sql = "insert into usuarios (idrol, nombre, edad, direccion, usuario, clave, dpi, correo, telefono, estado) 
             values ($role_id,'$nombre', $edad, '$direccion', '$usuario','$clave', '$dpi', 
@@ -50,32 +49,6 @@
             else{
                 $conexionClass -> desconectar($conexion);
                 return 0;
-            }
-
-            $local = $_FILES["file"]["name"];
-            $remoto = $_FILES["archivo"]["tmp_name"];
-            $tama = $_FILES["archivo"]["size"];
-            $ruta = "/img/usersprofiles/" . $local;
-            if($conexionftp!=0){
-                if (ftp_put($conexionftp, $local, $remoto)) {
-                    if (is_uploaded_file($remoto)){
-                        // copiamos el archivo temporal, del directorio de temporales de nuestro servidor a la ruta que creamos
-                        copy($remoto, $ruta);		
-                    }
-                    // Sino se pudo subir el temporal
-                    else {
-                        echo "no se pudo subir el archivo " . $local;
-                    }
-                    echo "successfully uploaded $local\n";
-                    exit;
-                } else {
-                    echo "There was a problem while uploading $local\n";
-                    exit;
-                    }
-                // close the connection
-                ftp_close($conexionftp);
-            }
-            else{
             }
         }
 
@@ -137,25 +110,6 @@
                 return 0;
             }
            
-        }
-        function upimgprofile($file_temp, $file, $remote_file){
-            $conexion = new Tool();
-            $conexionftp = $conexion -> conectarftp();
-
-            if($conexionftp!=0){
-                if (ftp_put($conexionftp, $remote_file, $file, FTP_ASCII)) {
-                    echo "successfully uploaded $file\n";
-                    exit;
-                } else {
-                    echo "There was a problem while uploading $file\n";
-                    exit;
-                    }
-                // close the connection
-                ftp_close($conexionftp);
-            }
-            else{
-                return 0;
-            }
         }
     }
 ?>

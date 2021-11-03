@@ -16,5 +16,6 @@
             crossorigin="anonymous" 
             referrerpolicy="no-referrer">
     </script>
+     <link rel="shortcut icon" href="img/brand/brand.png" />
     <title>SISTEMA DE VENTAS</title>
 </head>

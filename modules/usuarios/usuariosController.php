@@ -15,8 +15,7 @@ include_once('../../include/functions.php');
     $eliminarUsuario = (isset($_POST['eliminar_usuario'])) ? $_POST['eliminar_usuario'] : "0";
     $editar_usuario = (isset($_POST['editar_usuario'])) ? $_POST['editar_usuario'] : "0";
     $confirmar_edit_usuario = (isset($_POST['confirmar_edit_usuario'])) ? $_POST['confirmar_edit_usuario'] : "0";
-    $uploadfile = (isset($_POST['upload_file'])) ? $_POST['upload_file'] : "0";
-    
+
     if($crearUsuario == 1){
         $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : "0";
         $edad = (isset($_POST['edad'])) ? $_POST['edad'] : "0";
@@ -27,10 +26,8 @@ include_once('../../include/functions.php');
         $correo = (isset($_POST['correo'])) ? $_POST['correo'] : "0";
         $telefono = (isset($_POST['telefono'])) ? $_POST['telefono'] : "0";
         $role_id = (isset($_POST['role_id'])) ? $_POST['role_id'] : "0";
-        $form_data = (isset($_FILES['form_data'])) ? $_FILES['form_data'] : "0";
     
-    
-        $resultado = $usuariosClass -> createUser($nombre, $edad, $direccion, $usuario, $clave, $dpi, $correo, $telefono, $role_id, $form_data);
+        $resultado = $usuariosClass -> createUser($nombre, $edad, $direccion, $usuario, $clave, $dpi, $correo, $telefono, $role_id);
         $respuesta['resultado'] = $resultado;
         echo json_encode($respuesta);
     }
@@ -91,12 +88,6 @@ include_once('../../include/functions.php');
         $newdata['resultado'] = $result;
 
         echo json_encode($newdata);
-    }
-
-    if ($uploadfile == 1) {
-        $result = $usuariosClass -> upimgprofile();
-     } else {
-
     }
 
 ob_end_flush();

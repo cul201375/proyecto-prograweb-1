@@ -9,3 +9,9 @@ function CargarContenido(form){
         }
     });
 }
+$('#ListadoUsuarios').on('click', function (){
+    document.getElementById('saludonavbar').innerHTML='USUARIOS';
+});
+$('#ListadoProductos').on('click', function (){
+    document.getElementById('saludonavbar').innerHTML='PRODUCTOS';
+});

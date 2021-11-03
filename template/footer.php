@@ -26,7 +26,7 @@
                     ></a>
                     <div class="text-center p-1">
                     © 2021 Copyright:
-                        <a class="text-white" href="#" style = "text-decoration: none; hover{cursor: poiner;}">SISTEMA VENTAS by Emanuel Castillo</a>
+                        <a class="text-white" href="#" style = "text-decoration: none; hover{cursor: poiner;}">SEF SOFTWARE S.A</a>
                     </div>
                     </section>
                 </div>
@@ -35,6 +35,7 @@
     </div>
     <script src = "js/manejadorContenidos2.js"></script>
     <script src="js/moduloUsuarios8.js"></script>
+    <script src="js/barradebusqueda.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
     </body>
 </html>

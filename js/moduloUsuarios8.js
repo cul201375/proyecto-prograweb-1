@@ -8,14 +8,6 @@ $("#btnAgregarUsuario").on("click", function () {
   var correo = $("#correo").val();
   var telefono = $("#telefono").val();
   var rol = $("#role_id").val();
-  //Obtengo el fichero que va a ser subido
-  var dato_archivo = $('#userPic').prop("files")[0];
-  //Creo un dato de formulario para pasarlo en el ajax
-  var form_data = new FormData();
-  //Añado los datos del fichero que voy a subir
-  //En el lado del servidor puede obtener el archivo a traves de $_FILES["file"]
-  form_data.append("file", dato_archivo);
-  //Realizo el ajax
 
   if (
     nombre == "" ||
@@ -26,8 +18,7 @@ $("#btnAgregarUsuario").on("click", function () {
     dpi == "" ||
     correo == "" ||
     telefono == "" ||
-    rol == "" ||
-    dato_archivo == null
+    rol == ""
   ) {
     alert("Todos los campos son obligatorios");
     return false;
@@ -53,9 +44,7 @@ $("#btnAgregarUsuario").on("click", function () {
       "&telefono=" +
       telefono +
       "&role_id=" +
-      rol +
-      "form_data="+
-      form_data,
+      rol,
     url: "modules/usuarios/usuariosController.php",
     dataType: "json",
     success: function (data) {
@@ -91,8 +80,7 @@ function eliminarUsuario(id) {
   });
 }
 
-function editarUsuarios(id) {
-  var foto =  new Image();  
+function editarUsuarios(id) { 
   parametros = {
     editar_usuario: 1,
     idusuario: id,
@@ -137,7 +125,6 @@ $("#btnConfirmEditarUsuario").on("click", function () {
   let telefono = $("#editTelefono").val();
   let estado = $("#editEstado").val();
   let idrol = $("#editrol_id").val();
-  let img = $("#editFoto").val();
 
   if (
     idusuario == "" ||
@@ -150,8 +137,7 @@ $("#btnConfirmEditarUsuario").on("click", function () {
     correo == "" ||
     telefono == "" ||
     estado == null ||
-    idrol == null ||
-    img == null
+    idrol == null
   ) 
   {
     alert("Todos los campos son obligatorios");
