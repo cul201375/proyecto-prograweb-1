@@ -34,7 +34,7 @@
                         Clientes</a>
                 </li>
                 <li class="nav-item-sidebar">
-                    <a class="nav-link-sidebar" href="#" id="">
+                    <a class="nav-link-sidebar" href="#" id="RealizarIngreso" onclick="CargarContenido('modules/ingresos/realizarIngreso.php');">
                         <i class="fas fa-cart-plus icon-sibar"></i>
                         Ingreso de mercadería</a>
                 </li>
@@ -50,7 +50,7 @@
             <div id="contenedorPrincipal">
                 <div id="separador"
                     style="height:700px; width: 100%; text-align: center; flex-direction: column; display: flex; justify-content: center; align-items: center;">
-                    <img src="img/brand/seflogo.png" alt="brand">
+                    <img src="img/brand/seflogo.png" alt="brand" width="300" height="300">
                     <a href="http://localhost/soporte/informacion/sobre-nosotros.php" target="_blank"
                         rel="noopener noreferrer" style="color: red;">Contáctanos</a>
                 </div>

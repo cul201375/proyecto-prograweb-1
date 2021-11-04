@@ -23,6 +23,11 @@
         function getCategories(){
             $conexionClass = new Tool();
             $conexion = $conexionClass->conectar();
+
+            $sql = "SELECT * from categoria;";
+
+            return $resultado = mysqli_query($conexion, $sql);
+        
         }
     }
 ?>

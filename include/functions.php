@@ -11,6 +11,7 @@
     require_once("class/Conn/Tools.php");
     require_once("class/Login/loginClass.php");
     require_once("class/Usuarios/usuariosClass.php");
-    require_once("class/Productos/ProductosClass.php");
+    require_once("class/Productos/productosClass.php");
+    require_once("class/Ingresos/IngresosClass.php");
     
 ?>

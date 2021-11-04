@@ -8,7 +8,7 @@ include_once('../../include/functions.php');
   $productosClass = new ProductosClass();
   $resultado = array();
   $resultadoRoles = array();
-  $resultado = $productosClass -> listadoProductos();
+  $resultado = $productosClass -> getCategories();
   $nuevoresultado = $productosClass -> listadoProductos();
 
   ob_end_flush();
@@ -18,9 +18,13 @@ include_once('../../include/functions.php');
     <h6>FILTRAR POR CATEGORIA<i class="fas fa-filter" style="color: #ccccccc;"></i></h6>
     <select class="form-select" aria-label="Default select example">
         <option selected>TODOS</option>
-        <option value="1">TEC</option>
-        <option value="2">DEP</option>
-        <option value="3">ELEC</option>
+        <?php
+            while ($row = mysqli_fetch_array($resultado)){
+            ?>
+        <option value="<?php echo $row['idcategoria'];?>"><?php echo $row['nombre'];?></option>
+        <?php
+            }
+            ?>
     </select>
 </div>
 <div class="contendordeproductos">

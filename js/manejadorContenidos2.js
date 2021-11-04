@@ -15,3 +15,6 @@ $('#ListadoUsuarios').on('click', function (){
 $('#ListadoProductos').on('click', function (){
     document.getElementById('saludonavbar').innerHTML='PRODUCTOS';
 });
+$('#RealizarIngreso').on('click', function (){
+    document.getElementById('saludonavbar').innerHTML='PRODUCTOS';
+});
