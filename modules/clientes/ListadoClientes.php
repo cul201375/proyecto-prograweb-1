@@ -150,7 +150,12 @@ include_once('../../include/functions.php');
                     <label for="role_id">Selecceiona un rol</label>
                 </div>
             </div>
-            
+
+            <div class="mb-3" style="text-align:center;">
+                <label for="formFileSm" class="form-label">Elige una foto</label>
+                <input class="form-control form-control-sm" id="userPic" type="file">
+            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" id="btnAgregarUsuario">Agregar Usuario</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -237,6 +242,12 @@ include_once('../../include/functions.php');
                     <input type="number" class="form-control" id="editEstado">
                     <label for="editEstado">Estado elija 1 o 0</label>
                 </div>
+
+                <div class="mb-3" style="text-align:center;">
+                    <img id="viewedituserprofile" src="" alt="userprofile" width="80" height="80"><img />
+                    <label for="formFileSm" class="form-label">Elige una foto</label>
+                    <input class="selecctordefoto" style="font-size: x-small" id="editFoto" type="file">
+                </div>
             </div>
 
             <div class="modal-footer">
@@ -247,5 +258,3 @@ include_once('../../include/functions.php');
         </div>
     </div>
 </div>
-
-<script src="js/moduloUsuarios8.js"></script>

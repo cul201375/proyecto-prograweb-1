@@ -3,11 +3,8 @@ ob_start();
 session_start();
 
 include_once('../../include/functions.php');
-// $usuario = (isset($_POST['user'])) ? $_POST['user'] : "0";
-// $clave = (isset($_POST['clave'])) ? $_POST['clave'] : "0";
-
-$usuario = $_POST['user'];
-$clave = $_POST['clave'];
+$usuario = (isset($_POST['user'])) ? $_POST['user'] : "0";
+$clave = (isset($_POST['clave'])) ? $_POST['clave'] : "0";
 
 $loginClass = new loginClass();
 
@@ -21,13 +18,21 @@ if($fila = mysqli_fetch_array($resultado)){
     $_SESSION['email_usuario']= $fila["correo"];
     $_SESSION['perfilusuario'] = $fila['imgprofile'];
 
-   header("location: ../../main.php");
+    $result = 1;
+
+    $newdata['resultado'] = $result;
+
+    echo json_encode($newdata);
+   //header("location: ../../main.php");
 }
 else{
-    echo "<script>  alert('PARECE QUE TUS CREDENCIALES SON INCORRECTAS');
-    history.back();
-    </script>";
-    exit(-1);
+    $result = 0;
+
+    $newdata['resultado'] = $result;
+
+    echo json_encode($newdata);
+    //echo "<script>alert('CREDENCIALES INVALIDAS'); history.back();</script>";
+    //exit(-1);
 }
 
 ob_end_flush();

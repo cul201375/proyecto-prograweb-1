@@ -1,0 +1,21 @@
+.maincontenedordedetalle {
+  min-width: 400px;
+  overflow-y: auto;
+}
+
+.contenedordedetalle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cartita {
+  margin: 5px;
+  border-radius: 3px;
+  background: #212529;
+}
+
+.info button{
+    font-family: monospace;
+    margin: 5px;
+}

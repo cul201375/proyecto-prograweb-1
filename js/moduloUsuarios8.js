@@ -20,7 +20,7 @@ $("#btnAgregarUsuario").on("click", function () {
     telefono == "" ||
     rol == ""
   ) {
-    alert("Todos los campos son obligatorios");
+    swal("ERROR", "TODOS LOS CAMPOS SON OBLIGATORIOS", "error");
     return false;
   }
 
@@ -53,7 +53,7 @@ $("#btnAgregarUsuario").on("click", function () {
         $("#formNuevoUsuario").modal("hide");
         $("body").removeClass("modal-open");
         $(".modal-backdrop").remove();
-        alert("Usuario creado exitosamente");
+        swal("Buen trabajo!", "Usuario creado exitosamente", "success");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
         alert("No se pudo crear el usuario");
@@ -71,7 +71,7 @@ function eliminarUsuario(id) {
     success: function (data) {
       var resultado = data.resultado;
       if (resultado === 1) {
-        alert("Usuario eliminado exitosamente");
+        swal("Cuidado!", "Eliminaste un usuario!", "warning");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
         alert("No se pudo eliminar el usuario seleccionado");
@@ -176,7 +176,7 @@ $("#btnConfirmEditarUsuario").on("click", function () {
         $("#fromEditarUsuario").modal("hide");
         $("body").removeClass("modal-open");
         $(".modal-backdrop").remove();
-        alert("Usuario editado exitosamente");
+        swal("Buen trabajo!", "Editaste un usuario correctamente!", "success");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
         alert("No se pudo crear el usuario");

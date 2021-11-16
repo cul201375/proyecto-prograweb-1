@@ -1,9 +1,14 @@
+.maincontendordeproductos{
+    min-width: 450px;
+}
 .contendordeproductos{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 .card-producto{
+    border: 1px solid;
+    border-color: #4a8f4f;
     border-radius: 3px;
     background: #ffffff;
     box-shadow: 15px 10px 10px 2px rgba(0, 0, 0, 0.356);
