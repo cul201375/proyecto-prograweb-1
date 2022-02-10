@@ -56,7 +56,7 @@ $("#btnAgregarUsuario").on("click", function () {
         swal("Buen trabajo!", "Usuario creado exitosamente", "success");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
-        alert("No se pudo crear el usuario");
+        swal(":(", "Parece que algo salio mal. Intenta nuevamente!", "warning");
       }
     },
   });
@@ -74,7 +74,7 @@ function eliminarUsuario(id) {
         swal("Cuidado!", "Eliminaste un usuario!", "warning");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
-        alert("No se pudo eliminar el usuario seleccionado");
+        swal(":(", "Parece que algo salio mal. Intenta nuevamente!", "warning");
       }
     },
   });
@@ -140,7 +140,7 @@ $("#btnConfirmEditarUsuario").on("click", function () {
     idrol == null
   ) 
   {
-    alert("Todos los campos son obligatorios");
+    swal("ADVERTANCIA", "Todos los campos son obligatorios", "warning");
     return false;
   }
 
@@ -179,7 +179,7 @@ $("#btnConfirmEditarUsuario").on("click", function () {
         swal("Buen trabajo!", "Editaste un usuario correctamente!", "success");
         CargarContenido("modules/usuarios/listadoUsuarios.php");
       } else {
-        alert("No se pudo crear el usuario");
+        swal(":(", "Parece que algo salio mal. Intenta nuevamente!", "warning");
       }
     },
   });

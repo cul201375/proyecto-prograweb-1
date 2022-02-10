@@ -12,13 +12,11 @@
             if(!$conexion){
                 die("Conexion fallida por: ".mysqli_connect_error());
             }
-            else{
-                
-            }
-        
+
             $sql = "SELECT a.imgprofile, a.idusuario, a.nombre, a.edad, a.dpi, a.direccion, a.telefono, a.correo,  a.usuario, a.clave, a.estado, b.nombre as nombre_rol from usuarios a, rol b WHERE a.idrol = b.idrol;";
         
             return $resultado = mysqli_query($conexion, $sql);
+            $conexionClass -> desconectar($conexion);
         }
 
         function getRoles(){

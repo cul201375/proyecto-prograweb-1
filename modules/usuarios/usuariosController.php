@@ -8,8 +8,7 @@ if (!$_SESSION['idusuario']){
 include_once('../../include/functions.php');
 
     $usuariosClass = new usuariosClass();
-    $resultado = 0;
-    $respuesta = array();
+     
 
     $crearUsuario = (isset($_POST['crear_usuario'])) ? $_POST['crear_usuario'] : "0";
     $eliminarUsuario = (isset($_POST['eliminar_usuario'])) ? $_POST['eliminar_usuario'] : "0";

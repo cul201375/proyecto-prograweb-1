@@ -21,16 +21,27 @@
 .contenido-carta{
     height: fit-content;
     padding: 5px;
-    color: #8f4fca;
+    color: #6d75a3;
 }
 .opciones-carta{
-    text-align: center;
+    display: grid;
+    gap: 5px;
+    grid-column: auto;
+    grid-area: 50px;
+    /* text-align: center; */
     border-radius: 4px;
+    grid-column: 1 2;
     box-shadow: 7px 7px 1px 1px rgba(17, 17, 17, 0.2);
     margin: 10px;
     padding: 5px;
+    text-align: center;
     height: auto;
+    /* direction: revert; */
 }
+.opciones-carta button{
+    text-align: center;
+}
+
 .info-carta{
     margin: 5px;
     height: auto;
@@ -47,7 +58,7 @@
 }
 .imagen-carta img{
     margin: 15px;
-    background-color: #8f4fca;
+    background-color: #ffffff;
 }
 
 #idproducto{

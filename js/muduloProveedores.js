@@ -155,7 +155,7 @@ $("#btnConfirmEdit").on("click", function () {
         swal("Buen trabajo!", "Editaste un proveedor correctamente!", "success");
         CargarContenido("modules/proveedores/listadoProveedores.php");
       } else {
-        swal("ADVERTENCIA", "NO SE PUDO ACTUALIZAR EL PROVEEDOR", "warning");
+        swal(":(", "Parece que algo salio mal. Intenta nuevamente!", "warning");
       }
     },
   });
@@ -212,7 +212,7 @@ function addProveedor_from_ingreso(){
         CargarContenido("modules/proveedores/realizarIngreso.php");
         swal("Buen trabajo!", "Proveedor creado exitosamente", "success");
       } else {
-        swal("ADVERTENCIA", "NO SE PUDO AGREGAR EL PROVEEDOR", "warning");
+        swal(":(", "Parece que algo salio mal. Intenta nuevamente!", "warning");
       }
     },
   });

@@ -3,14 +3,19 @@
         <!--- inicio barra de navegacion-->
         <div>
             <nav class="navbar navbar-expand-md navbar-dark backgroundnavbar flex-md-nowrap ">
-                <div class="container-fluid" style="flex-wrap:nowrap;">
+                <div class="container-fluid">
                     <a type="button" class="navbar-toggler" data-bs-toggle="offcanvas" href="#offcanvasExample"
                         role="button">
                         <span class="navbar-toggler-icon"></span>
                     </a>
-                    <div id="MenuNav" class="collapse navbar-collapse">
+                    <div style="text-align: center;">
                         <a href="/proyecto/main.php" id="SISTEMAVENTAS"><img src="img/brand/brand.png" heigth="50"
                                 width="40"></a>
+                    </div>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div id="MenuNav" class="collapse navbar-collapse">
                         <ul class="navbar-nav ms-3">
                             <li class="nav-item"><a class="nav-link"
                                     href="http://localhost/soporte/informacion/sobre-nosotros.php" target="_blank"
@@ -33,13 +38,10 @@
                                 </ul>
                             </li>
                         </ul>
+                        <div class="container" style="width:100%; text-align: center; color: #ffffff;">
+                            <h5 id="saludonavbar">BIENVENIDO</h5>
+                        </div>
                     </div>
-                    <div class="container" style="width:100%; text-align: center; color: #ffffff;">
-                        <h5 id="saludonavbar">BIENVENIDO</h5>
-                    </div>
-                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                 </div>
             </nav>
         </div>

@@ -62,6 +62,7 @@ class Proveedores{
 
         $resultado = mysqli_query($conexion, $sql);
         return $resultado;
+        $conexionClass -> desconectar($conexion);
     }
     
     function modificarProveedor($idpersona, $nombre, $nit, $direccion, $telefono, $correo){

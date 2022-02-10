@@ -14,5 +14,6 @@
     require_once("class/Productos/productosClass.php");
     require_once("class/Ingresos/IngresosClass.php");
     require_once("class/Proveedores/proveedoresClass.php");
-    
+    require_once("class/Ventas/VentasClass.php");
+    require_once("class/Clientes/ClientesClass.php");
 ?>

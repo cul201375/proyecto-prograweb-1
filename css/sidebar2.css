@@ -38,8 +38,8 @@
     text-align: center;
     width: 40%;
     padding: 5px;
-    color: #ffffff; 
-    font-size: 40px;
+    color: #ffffff;
+    font-size: 20px;
 }
 
 .nav-item-sidebar{
@@ -70,8 +70,8 @@
     height: 55.25px;
     width: 100%;
     text-decoration: none;
-    color: #3ebe54; 
-    font-size: 20px;
+    color: #3ebe54;
+    font-size: 15px;
 }
 .nav-link-sidebar:hover{
     width: 100%;

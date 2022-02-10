@@ -8,6 +8,7 @@ class loginClass{
         $sql = "select * from usuarios where usuario = '$usuario' and clave = '$clave';";
         $resultado = mysqli_query($conexion, $sql);
         return $resultado;
+        $conexionClass -> desconectar($conexion);
     }
 
     function cerrar_sesion (){

@@ -89,3 +89,5 @@ ob_end_flush();
         </div>
     </div>
 </div>
+
+<script src="js/moduloDetallesIngreso.js"></script>

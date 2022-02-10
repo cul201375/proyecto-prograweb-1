@@ -15,9 +15,10 @@
                 
             }
         
-            $sql = "SELECT a.idarticulo, a.idcategoria, a.codigo, a.nombre, a.precio_venta, a.stock, a.descripcion, a.imagen, a.estado, b.nombre AS nombrecategoria, b.idcategoria FROM articulo a, categoria b WHERE a.idcategoria = b.idcategoria;";
+            $sql = "SELECT a.idarticulo, a.idcategoria, a.codigo, a.nombre, a.precio_venta, a.stock, a.descripcion, a.imagen, a.estado, b.nombre AS nombrecategoria, b.idcategoria FROM articulo a, categoria b WHERE a.idcategoria = b.idcategoria  order by idarticulo;";
         
             return $resultado = mysqli_query($conexion, $sql);
+            $conexionClass -> desconectar($conexion);
         }
 
         function getCategories(){
@@ -27,7 +28,7 @@
             $sql = "SELECT * from categoria;";
 
             return $resultado = mysqli_query($conexion, $sql);
-        
+            $conexionClass -> desconectar($conexion);
         }
     }
 ?>
